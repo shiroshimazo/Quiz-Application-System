@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="quizapplicationsystem.shared.auth.LoginController">
+    <padding>
+        <Insets top="40.0" right="60.0" bottom="40.0" left="60.0" />
+    </padding>
+    <children>
+        <Label text="Quiz Application System" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+        <Label text="Sign in to continue" style="-fx-font-size: 13px; -fx-text-fill: #666666;" />
+
+        <GridPane hgap="10.0" vgap="12.0" maxWidth="320.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="80.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="180.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            <children>
+                <Label text="Username" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="usernameField" promptText="Enter username"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Password" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <PasswordField fx:id="passwordField" promptText="Enter password"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Role" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308"
+                          GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+
+        <Label fx:id="messageLabel" text="" wrapText="true" maxWidth="320.0"
+               style="-fx-text-fill: #c0392b;" />
+
+        <Button fx:id="loginButton" text="Login" defaultButton="true"
+                prefWidth="320.0" onAction="#handleLogin" />
+    </children>
+</VBox>
