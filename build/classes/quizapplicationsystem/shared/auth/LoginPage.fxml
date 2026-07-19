@@ -2,54 +2,147 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="quizapplicationsystem.shared.auth.LoginController">
-    <padding>
-        <Insets top="40.0" right="60.0" bottom="40.0" left="60.0" />
-    </padding>
+<StackPane minHeight="650.0" minWidth="900.0" prefHeight="680.0" prefWidth="1140.0"
+           styleClass="login-root" stylesheets="@LoginPage.css"
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="quizapplicationsystem.shared.auth.LoginController">
     <children>
-        <Label text="Quiz Application System" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
-        <Label text="Sign in to continue" style="-fx-font-size: 13px; -fx-text-fill: #666666;" />
+        <BorderPane styleClass="page-frame">
+            <padding>
+                <Insets bottom="28.0" left="36.0" right="36.0" top="28.0" />
+            </padding>
 
-        <GridPane hgap="10.0" vgap="12.0" maxWidth="320.0">
-            <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="80.0" />
-                <ColumnConstraints hgrow="ALWAYS" minWidth="180.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-            <children>
-                <Label text="Username" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <TextField fx:id="usernameField" promptText="Enter username"
-                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <center>
+                <StackPane>
+                    <children>
+                        <VBox alignment="TOP_LEFT" maxHeight="-Infinity"
+                              maxWidth="420.0" prefWidth="420.0"
+                              styleClass="auth-card">
+                            <padding>
+                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                            </padding>
+                            <children>
+                                <Label styleClass="card-title" text="Welcome back" />
 
-                <Label text="Password" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <PasswordField fx:id="passwordField" promptText="Enter password"
-                               GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                                <Label maxWidth="356.0" styleClass="card-description"
+                                       text="Enter your credentials to continue to your workspace."
+                                       wrapText="true">
+                                    <VBox.margin>
+                                        <Insets top="8.0" />
+                                    </VBox.margin>
+                                </Label>
 
-                <Label text="Role" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308"
-                          GridPane.rowIndex="2" GridPane.columnIndex="1" />
-            </children>
-        </GridPane>
+                                <VBox spacing="8.0" styleClass="field-group">
+                                    <VBox.margin>
+                                        <Insets top="28.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Label styleClass="field-label" text="Username" />
+                                        <StackPane>
+                                            <children>
+                                                <TextField fx:id="usernameField" accessibleText="Username"
+                                                           maxWidth="1.7976931348623157E308"
+                                                           prefHeight="44.0" promptText="Enter your username"
+                                                           styleClass="input-field" />
+                                                <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                                                         mouseTransparent="true" styleClass="field-icon"
+                                                         StackPane.alignment="CENTER_LEFT">
+                                                    <StackPane.margin>
+                                                        <Insets left="14.0" />
+                                                    </StackPane.margin>
+                                                </SVGPath>
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </VBox>
 
-        <Label fx:id="messageLabel" text="" wrapText="true" maxWidth="320.0"
-               style="-fx-text-fill: #c0392b;" />
+                                <VBox spacing="8.0" styleClass="field-group">
+                                    <VBox.margin>
+                                        <Insets top="16.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Label styleClass="field-label" text="Password" />
+                                        <StackPane>
+                                            <children>
+                                                <PasswordField fx:id="passwordField" accessibleText="Password"
+                                                               maxWidth="1.7976931348623157E308"
+                                                               prefHeight="44.0" promptText="Enter your password"
+                                                               styleClass="input-field" />
+                                                <TextField fx:id="visiblePasswordField" accessibleText="Password"
+                                                           maxWidth="1.7976931348623157E308"
+                                                           prefHeight="44.0" promptText="Enter your password"
+                                                           styleClass="input-field" visible="false" />
+                                                <SVGPath content="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"
+                                                         mouseTransparent="true" styleClass="field-icon"
+                                                         StackPane.alignment="CENTER_LEFT">
+                                                    <StackPane.margin>
+                                                        <Insets left="14.0" />
+                                                    </StackPane.margin>
+                                                </SVGPath>
+                                                <Button fx:id="passwordVisibilityButton"
+                                                        accessibleText="Show password"
+                                                        contentDisplay="GRAPHIC_ONLY"
+                                                        minHeight="40.0" minWidth="40.0"
+                                                        onAction="#togglePasswordVisibility"
+                                                        prefHeight="40.0" prefWidth="40.0"
+                                                        styleClass="password-toggle"
+                                                        StackPane.alignment="CENTER_RIGHT">
+                                                    <graphic>
+                                                        <StackPane minHeight="24.0" minWidth="24.0"
+                                                                   prefHeight="24.0" prefWidth="24.0"
+                                                                   scaleX="0.72" scaleY="0.72">
+                                                            <children>
+                                                                <SVGPath fx:id="passwordShowIcon"
+                                                                         content="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                                                                         styleClass="eye-icon" />
+                                                                <SVGPath fx:id="passwordHideIcon"
+                                                                         content="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.82l2.92 2.92C21.07 15.47 22.27 13.85 23 12c-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zm-9.73-4L1 4.27l2.28 2.28C1.78 7.84.61 9.48 0 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84L18.73 22 20 20.73 2.27 3zM7.53 10.8l1.55 1.55c-.05-.18-.08-.36-.08-.55 0-1.66 1.34-3 3-3 .19 0 .37.03.55.08L11 7.33c-1.74.4-3.07 1.73-3.47 3.47zM12 17c-2.76 0-5-2.24-5-5 0-.65.13-1.26.36-1.82l1.56 1.56c-.01.09-.02.17-.02.26 0 1.71 1.39 3.1 3.1 3.1.09 0 .17-.01.26-.02l1.56 1.56c-.56.23-1.17.36-1.82.36z"
+                                                                         opacity="0.0" scaleX="0.25" scaleY="0.25"
+                                                                         styleClass="eye-icon" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </graphic>
+                                                    <StackPane.margin>
+                                                        <Insets right="2.0" />
+                                                    </StackPane.margin>
+                                                </Button>
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </VBox>
 
-        <Button fx:id="loginButton" text="Login" defaultButton="true"
-                prefWidth="320.0" onAction="#handleLogin" />
+                                <Label fx:id="messageLabel" managed="false" maxWidth="356.0"
+                                       styleClass="form-message" text="" visible="false"
+                                       wrapText="true">
+                                    <VBox.margin>
+                                        <Insets top="16.0" />
+                                    </VBox.margin>
+                                </Label>
+
+                                <Button fx:id="loginButton" defaultButton="true"
+                                        maxWidth="1.7976931348623157E308"
+                                        onAction="#handleLogin" prefHeight="44.0"
+                                        styleClass="login-button" text="Sign in">
+                                    <VBox.margin>
+                                        <Insets top="24.0" />
+                                    </VBox.margin>
+                                </Button>
+
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </center>
+
+        </BorderPane>
     </children>
-</VBox>
+</StackPane>

@@ -16,7 +16,7 @@ public enum Role {
         this.displayName = displayName;
     }
 
-    /** Human-friendly label shown in the UI (e.g. the login role selector). */
+    /** Human-friendly label used in role-aware UI and audit messages. */
     public String getDisplayName() {
         return displayName;
     }

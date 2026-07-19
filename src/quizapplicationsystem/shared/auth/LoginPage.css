@@ -1,0 +1,162 @@
+/*
+ * Minimal desktop sign-in inspired by shadcn/ui's neutral design language.
+ * JavaFX looked-up colors keep the visual system centralized and consistent.
+ */
+
+.login-root {
+    -color-page: #F7F7F8;
+    -color-surface: #FFFFFF;
+    -color-foreground: #18181B;
+    -color-muted: #71717A;
+    -color-subtle: #A1A1AA;
+    -color-border: #E4E4E7;
+    -color-input-border: #D4D4D8;
+    -color-accent: #F4F4F5;
+    -color-danger: #B91C1C;
+    -color-danger-surface: #FEF2F2;
+    -color-danger-border: #FECACA;
+    -color-success: #166534;
+    -color-success-surface: #F0FDF4;
+    -color-success-border: #BBF7D0;
+    -fx-background-color: -color-page;
+    -fx-font-family: "Segoe UI Variable Text";
+}
+
+.page-frame {
+    -fx-background-color: -color-page;
+}
+
+/* Authentication card */
+
+.auth-card {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 14;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(24, 24, 27, 0.08), 28, 0.10, 0, 10);
+}
+
+.card-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-foreground;
+}
+
+.card-description {
+    -fx-font-size: 14px;
+    -fx-line-spacing: 2px;
+    -fx-text-fill: -color-muted;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27272A;
+}
+
+.input-field {
+    -fx-background-color: -color-surface;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-input-border;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+    -fx-highlight-fill: -color-foreground;
+    -fx-highlight-text-fill: -color-surface;
+    -fx-padding: 0 44 0 40;
+    -fx-prompt-text-fill: -color-subtle;
+    -fx-text-fill: -color-foreground;
+}
+
+.input-field:hover {
+    -fx-border-color: -color-subtle;
+}
+
+.input-field:focused {
+    -fx-border-color: -color-foreground;
+    -fx-effect: dropshadow(gaussian, rgba(24, 24, 27, 0.16), 7, 0.18, 0, 0);
+}
+
+.field-icon {
+    -fx-fill: -color-muted;
+    -fx-scale-x: 0.62;
+    -fx-scale-y: 0.62;
+}
+
+.password-toggle {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 7;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.password-toggle:hover {
+    -fx-background-color: -color-accent;
+}
+
+.password-toggle:pressed {
+    -fx-background-color: -color-border;
+}
+
+.password-toggle:focused {
+    -fx-background-color: -color-accent;
+    -fx-effect: dropshadow(gaussian, rgba(24, 24, 27, 0.20), 6, 0.16, 0, 0);
+}
+
+.eye-icon {
+    -fx-fill: #52525B;
+}
+
+.form-message {
+    -fx-background-color: -color-accent;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-line-spacing: 1px;
+    -fx-padding: 10 12 10 12;
+    -fx-text-fill: #3F3F46;
+}
+
+.form-message.message-error {
+    -fx-background-color: -color-danger-surface;
+    -fx-border-color: -color-danger-border;
+    -fx-text-fill: -color-danger;
+}
+
+.form-message.message-success {
+    -fx-background-color: -color-success-surface;
+    -fx-border-color: -color-success-border;
+    -fx-text-fill: -color-success;
+}
+
+.login-button {
+    -fx-background-color: -color-foreground;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 16 0 16;
+    -fx-text-fill: -color-surface;
+}
+
+.login-button:hover {
+    -fx-background-color: #27272A;
+}
+
+.login-button:pressed {
+    -fx-background-color: #3F3F46;
+}
+
+.login-button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(24, 24, 27, 0.28), 8, 0.20, 0, 0);
+}
+
+.login-button:disabled {
+    -fx-opacity: 0.48;
+}

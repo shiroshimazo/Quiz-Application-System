@@ -26,6 +26,8 @@ public class QuizApplicationSystem extends Application {
 
         stage.setScene(new Scene(root));
         stage.setTitle("Quiz Application System - Login");
+        stage.setMinWidth(920.0);
+        stage.setMinHeight(690.0);
         stage.show();
     }
 
