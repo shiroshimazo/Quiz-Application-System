@@ -1,5 +1,6 @@
 package quizapplicationsystem.shared.auth;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,13 +9,18 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.SVGPath;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import quizapplicationsystem.admin.shell.AdminShellController;
 
 /**
  * Controller for LoginPage.fxml. The authentication service owns role
@@ -106,6 +112,7 @@ public class LoginController {
             return;
         }
 
+        passwordField.clear();
         routeToRole(authenticatedSession.get());
     }
 
@@ -149,7 +156,7 @@ public class LoginController {
 
         switch (authenticatedSession.role()) {
             case ADMIN:
-                showSuccess("Welcome, " + displayName + ". The admin workspace is coming soon.");
+                openAdminDashboard(authenticatedSession);
                 break;
             case TEACHER:
                 showSuccess("Welcome, " + displayName + ". The teacher workspace is coming soon.");
@@ -157,6 +164,30 @@ public class LoginController {
             case STUDENT:
                 showSuccess("Welcome, " + displayName + ". The student workspace is coming soon.");
                 break;
+        }
+    }
+
+    private void openAdminDashboard(UserSession authenticatedSession) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/quizapplicationsystem/admin/shell/AdminShell.fxml"));
+            Parent dashboardRoot = loader.load();
+            AdminShellController controller = loader.getController();
+            controller.setSession(authenticatedSession);
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setMaximized(false);
+            stage.setScene(new Scene(dashboardRoot, 1920.0, 1080.0));
+            stage.setTitle("Dashboard - Quiz Application System Admin");
+            stage.setMinWidth(1280.0);
+            stage.setMinHeight(720.0);
+            stage.setWidth(1920.0);
+            stage.setHeight(1080.0);
+            stage.centerOnScreen();
+            stage.setMaximized(true);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "The admin dashboard could not be opened.", exception);
+            showError("The admin dashboard could not be opened. Please try again.");
         }
     }
 
