@@ -1,6 +1,8 @@
 package quizapplicationsystem.shared.auth;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -23,6 +25,7 @@ public class LoginController {
     private static final String MESSAGE_ERROR = "message-error";
     private static final String MESSAGE_SUCCESS = "message-success";
     private static final Interpolator ICON_INTERPOLATOR = Interpolator.EASE_BOTH;
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     private final AuthService authService = new AuthService();
     private final GaussianBlur passwordShowIconBlur = new GaussianBlur(0.0);
@@ -85,7 +88,17 @@ public class LoginController {
             return;
         }
 
-        Optional<UserSession> authenticatedSession = authService.authenticate(username, password);
+        Optional<UserSession> authenticatedSession;
+        try {
+            authenticatedSession = authService.authenticate(username, password);
+        } catch (AuthenticationException exception) {
+            LOGGER.log(Level.SEVERE, "Authentication could not be completed.", exception);
+            passwordField.clear();
+            showError("Unable to connect to the account database. Please try again.");
+            activePasswordField().requestFocus();
+            return;
+        }
+
         if (authenticatedSession.isEmpty()) {
             passwordField.clear();
             showError("Incorrect username or password. Please try again.");
@@ -132,17 +145,17 @@ public class LoginController {
      * teacher.shell, student.shell) once those views exist.
      */
     private void routeToRole(UserSession authenticatedSession) {
-        String username = authenticatedSession.username();
+        String displayName = authenticatedSession.displayName();
 
         switch (authenticatedSession.role()) {
             case ADMIN:
-                showSuccess("Welcome, " + username + ". The admin workspace is coming soon.");
+                showSuccess("Welcome, " + displayName + ". The admin workspace is coming soon.");
                 break;
             case TEACHER:
-                showSuccess("Welcome, " + username + ". The teacher workspace is coming soon.");
+                showSuccess("Welcome, " + displayName + ". The teacher workspace is coming soon.");
                 break;
             case STUDENT:
-                showSuccess("Welcome, " + username + ". The student workspace is coming soon.");
+                showSuccess("Welcome, " + displayName + ". The student workspace is coming soon.");
                 break;
         }
     }
